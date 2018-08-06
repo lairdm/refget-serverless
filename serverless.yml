@@ -1,0 +1,65 @@
+service: serverless-rest-api-with-dynamodb
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  region: us-west-2
+  runtime: nodejs8.10
+  environment:
+    DYNAMODB_TABLE: sequences
+    CURRENT_REGION: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      Resource: "arn:aws:dynamodb:us-west-2:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  get:
+    handler: refseq/sequence.get
+    events:
+      - http:
+          path: sequence/{checksum}
+          method: get
+          request:
+            parameters:
+              querystring:
+                start: false
+                end: false
+              paths:
+                checksum: true
+          cors: true
+
+  params:
+    handler: refseq/params.get
+    events:
+      - http:
+          path: params/{checksum}
+          method: get
+          request:
+            parameters:
+              querystring:
+                start: false
+                end: false
+              paths:
+                checksum: true
+          cors: true
+
+  metadata:
+    handler: refseq/metadata.get
+    events:
+      - http:
+          path: sequence/{checksum}/metadata
+          method: get
+          cors: true
+
+  info:
+    handler: refseq/info.get
+    events:
+      - http:
+          path: sequence/service-info
+          method: get
+          cors: true
