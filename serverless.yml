@@ -33,21 +33,6 @@ functions:
                 checksum: true
           cors: true
 
-  params:
-    handler: refseq/params.get
-    events:
-      - http:
-          path: params/{checksum}
-          method: get
-          request:
-            parameters:
-              querystring:
-                start: false
-                end: false
-              paths:
-                checksum: true
-          cors: true
-
   metadata:
     handler: refseq/metadata.get
     events:
