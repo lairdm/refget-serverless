@@ -38,7 +38,7 @@ module.exports.get = async (event, context, callback) => {
     const response = {
 	statusCode: 200,
 	body: JSON.stringify({'metadata': metadata}),
-        headers: { 'Content-Type': 'application/vnd.ga4gh.seq.v1.0.0+json' },
+        headers: { 'Content-Type': 'application/vnd.ga4gh.refget.v1.0.0+json' },
     };
     callback(null, response);
 

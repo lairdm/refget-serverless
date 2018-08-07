@@ -77,7 +77,7 @@ module.exports.get = async (event, context, callback) => {
         callback(null, {
           statusCode: 200,
           body: data.Body.toString('ascii'),
-          headers: { 'Content-Type': 'text/vnd.ga4gh.seq.v1.0.0+plain; charset=us-ascii' },
+          headers: { 'Content-Type': 'text/vnd.ga4gh.refget.v1.0.0+plain; charset=us-ascii' },
 	});
 	return;
       }).promise();

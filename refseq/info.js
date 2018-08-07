@@ -9,7 +9,7 @@ module.exports.get = (event, context, callback) => {
     var info = {};
     info['circular_supported'] = false;
     info['algorithms'] = ['md5', 'trunc512'];
-    info['sequence_limit'] = 4000000;
+    info['subsequence_limit'] = 4000000;
     info['supported_api_versions'] = ['0.2']
 
     const response = {
